@@ -8,10 +8,23 @@
     <style>
         h1 {
             animation: fadeIn 2s ease-in-out;
+            cursor: pointer;
         }
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
+        }
+        .bee {
+            position: absolute;
+            width: 50px;
+            animation: fly 5s infinite;
+        }
+        @keyframes fly {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(100px, -50px); }
+            50% { transform: translate(200px, 20px); }
+            75% { transform: translate(300px, -10px); }
+            100% { transform: translate(0, 0); }
         }
     </style>
 </head>
@@ -19,25 +32,47 @@
     <header>
         <h1>Shmel'ka 🐝</h1>
         <nav>
-            <a href="#about">О нас / About</a>
-            <a href="#contact">Контакты / Contact</a>
+            <a href="#about" data-ru="О нас" data-en="About">О нас</a>
+            <a href="#contact" data-ru="Контакты" data-en="Contact">Контакты</a>
         </nav>
+        <button id="toggleLanguage">EN</button>
     </header>
     <main>
         <section id="about">
-            <h2>О нас / About Us</h2>
-            <p>Это мой первый сайт на GitHub Pages. / This is my first site on GitHub Pages.</p>
+            <h2 data-ru="О нас" data-en="About Us">О нас</h2>
+            <p data-ru="Это мой первый сайт на GitHub Pages." data-en="This is my first site on GitHub Pages.">Это мой первый сайт на GitHub Pages.</p>
             <img src="images/logo.png" alt="Логотип / Logo">
         </section>
         <section id="contact">
-            <h2>Контакты / Contact</h2>
-            <p>Телеграм: <a href="https://t.me/Shmel2120">@Shmel2120</a></p>
-            <p>Telegram: <a href="https://t.me/Shmel2120">@Shmel2120</a></p>
+            <h2 data-ru="Контакты" data-en="Contact">Контакты</h2>
+            <p data-ru="Телеграм: " data-en="Telegram: "><a href="https://t.me/Shmel2120">@Shmel2120</a></p>
         </section>
+        <img src="images/bee.png" class="bee" alt="Bee">
     </main>
     <footer>
         <p>© 2024 Shmel'ka</p>
     </footer>
-    <script src="script.js"></script>
+    <script>
+        document.querySelector('header h1').addEventListener('click', () => {
+            alert('Добро пожаловать!');
+        });
+
+        document.querySelector('.bee').addEventListener('mouseover', () => {
+            alert('Жужж-жужж!');
+        });
+
+        const toggleLanguageButton = document.getElementById('toggleLanguage');
+        toggleLanguageButton.addEventListener('click', () => {
+            const elements = document.querySelectorAll('[data-ru]');
+            elements.forEach(el => {
+                if (el.textContent === el.getAttribute('data-ru')) {
+                    el.textContent = el.getAttribute('data-en');
+                } else {
+                    el.textContent = el.getAttribute('data-ru');
+                }
+            });
+            toggleLanguageButton.textContent = toggleLanguageButton.textContent === 'EN' ? 'RU' : 'EN';
+        });
+    </script>
 </body>
 </html>
