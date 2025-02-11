@@ -3,12 +3,21 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleLanguageButton.addEventListener('click', () => {
         const elements = document.querySelectorAll('[data-ru]');
         elements.forEach(el => {
-            if (el.textContent === el.getAttribute('data-ru')) {
-                el.textContent = el.getAttribute('data-en');
+            if (el.childElementCount > 0) {
+                el.childNodes.forEach(child => {
+                    if (child.nodeType === Node.TEXT_NODE) {
+                        const ruText = el.getAttribute('data-ru');
+                        const enText = el.getAttribute('data-en');
+                        child.textContent = (child.textContent === ruText) ? enText : ruText;
+                    }
+                });
             } else {
-                el.textContent = el.getAttribute('data-ru');
+                const ruText = el.getAttribute('data-ru');
+                const enText = el.getAttribute('data-en');
+                el.textContent = (el.textContent === ruText) ? enText : ruText;
             }
         });
-        toggleLanguageButton.textContent = toggleLanguageButton.textContent === 'EN' ? 'RU' : 'EN';
+        
+        toggleLanguageButton.textContent = (toggleLanguageButton.textContent === 'EN') ? 'RU' : 'EN';
     });
 });
