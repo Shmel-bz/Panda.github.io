@@ -6,8 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const ruText = el.getAttribute('data-ru');
             const enText = el.getAttribute('data-en');
 
-            if (el.textContent.includes(ruText) || el.textContent.includes(enText)) {
-                el.textContent = el.textContent.includes(ruText) ? enText : ruText;
+            if (el.children.length === 0) {
+                el.textContent = el.textContent === ruText ? enText : ruText;
+            } else {
+                el.childNodes.forEach(node => {
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        node.textContent = node.textContent === ruText ? enText : ruText;
+                    }
+                });
             }
         });
         
