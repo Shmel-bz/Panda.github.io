@@ -47,32 +47,11 @@
             <h2 data-ru="Контакты" data-en="Contact">Контакты</h2>
             <p data-ru="Телеграм: " data-en="Telegram: "><a href="https://t.me/Shmel2120">@Shmel2120</a></p>
         </section>
-        <img src="🐝" class="bee" alt="Bee">
+        <img src="images/bee.png" class="bee" alt="Bee">
     </main>
     <footer>
         <p>© 2024 Shmel'ka</p>
     </footer>
-    <script>
-        document.querySelector('header h1').addEventListener('click', () => {
-            alert('Добро пожаловать!');
-        });
-
-        document.querySelector('.bee').addEventListener('mouseover', () => {
-            alert('Жужж-жужж!');
-        });
-
-        const toggleLanguageButton = document.getElementById('toggleLanguage');
-        toggleLanguageButton.addEventListener('click', () => {
-            const elements = document.querySelectorAll('[data-ru]');
-            elements.forEach(el => {
-                if (el.textContent === el.getAttribute('data-ru')) {
-                    el.textContent = el.getAttribute('data-en');
-                } else {
-                    el.textContent = el.getAttribute('data-ru');
-                }
-            });
-            toggleLanguageButton.textContent = toggleLanguageButton.textContent === 'EN' ? 'RU' : 'EN';
-        });
-    </script>
+    <script src="languageToggle.js"></script>
 </body>
 </html>
